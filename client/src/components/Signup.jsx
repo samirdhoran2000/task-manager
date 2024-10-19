@@ -12,12 +12,13 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/auth/signup", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/auth/signup`, {
         username,
         password,
       });
       navigate("/login");
     } catch (err) {
+        console.log("something went wrong in handle submit function ", err);        
       setError("Error creating account");
     }
   };

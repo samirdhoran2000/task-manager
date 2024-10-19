@@ -5,9 +5,6 @@ import {
   Container,
   Typography,
   Button,
-  List,
-  ListItem,
-  ListItemText,
   TextField,
   Select,
   MenuItem,
@@ -46,7 +43,11 @@ const Dashboard = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [openDialog, setOpenDialog] = useState(false);
   const { token, logout } = useAuth();
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    
+console.log("import.meta.env.VITE_API_URL", import.meta.env.VITE_API_URL);
+//  console.log(import.meta.env.VITE_APP_NAME);
+    
 
   useEffect(() => {
     fetchTasks();
@@ -55,7 +56,7 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/tasks", {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
         params: filter,
       });
@@ -67,7 +68,7 @@ const Dashboard = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/categories", {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/categories`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(response.data);
@@ -79,7 +80,7 @@ const Dashboard = () => {
 const handleCreateTask = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post("http://localhost:3000/tasks", newTask, {
+    await axios.post(`${import.meta.env.VITE_API_URL}/tasks`, newTask, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setNewTask({
@@ -101,7 +102,7 @@ const handleCreateCategory = async (e) => {
   e.preventDefault();
   try {
     await axios.post(
-      "http://localhost:3000/categories",
+      `${import.meta.env.VITE_API_URL}/categories`,
       { name: newCategory },
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -119,7 +120,7 @@ const handleCreateCategory = async (e) => {
 const handleUpdateTask = async () => {
   try {
     await axios.put(
-      `http://localhost:3000/tasks/${editingTask._id}`,
+      `${import.meta.env.VITE_API_URL}/tasks/${editingTask._id}`,
       editingTask,
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -137,7 +138,7 @@ const handleUpdateTask = async () => {
 
 const handleDeleteTask = async (taskId) => {
   try {
-    await axios.delete(`http://localhost:3000/tasks/${taskId}`, {
+    await axios.delete(`${import.meta.env.VITE_API_URL}/tasks/${taskId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     fetchTasks();

@@ -17,13 +17,13 @@ const CalendarView = () => {
     try {
       const start = startOfMonth(currentDate)
       const end = endOfMonth(currentDate)
-      const response = await axios.get('http://localhost:3000/tasks', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
-        params: { 
+        params: {
           startDate: start.toISOString(),
-          endDate: end.toISOString()
-        }
-      })
+          endDate: end.toISOString(),
+        },
+      });
       setTasks(response.data)
     } catch (error) {
       console.error('Error fetching tasks:', error)
