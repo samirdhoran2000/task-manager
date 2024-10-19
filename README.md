@@ -1,4 +1,4 @@
-# Task Manager App
+# Task Manager App - Backend
 
 A robust task management application built with Node.js, Express, and MongoDB. This app allows users to create tasks, assign them to categories, and track their progress.
 
@@ -95,3 +95,18 @@ If you want to contact me, you can reach me at `samirdhoran2000@gmail.com`.
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [Bcrypt](https://github.com/kelektiv/node.bcrypt.js)
+
+
+
+
+# Task Manager App - Frontend
+
+1. Navigate to client folder from the root directory (root directory is task-manager)
+
+2. cd client
+
+3. Install the dependencies: npm install
+
+4. Update the VITE_API_URL=localhost:3000 OR you backend API Endpoints
+
+5. After setting up the env variable. run the project using : npm run dev
